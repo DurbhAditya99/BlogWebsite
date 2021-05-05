@@ -1,0 +1,23 @@
+{% extends 'main/home.html' %}
+
+{% block content %}
+<div class="centerstage">
+    {% for post in blogpost_list %}
+        {% if post.published_date is not Null %}
+        <div class="post">
+                <div class="card" style="width: 18rem;">
+                <div class="card-body">
+                    <h1 class="card-title"><a href="{% url 'post_detail' pk=post.pk %}">{{ post.title}}</a></h1>
+                    <a href="{% url 'post_detail' pk=post.pk %}" class="btn btn-primary">Next</a>
+                     </div>
+                    </div>
+            <h1></h1>
+            <div class="date">
+                <p>Published on: {{ post.published_date}}</p>
+            </div>
+            <a href="{% url 'post_detail' pk=post.pk %}">Comments: {{ post.approve_comments.count }}</a>
+        </div>
+    	{% endif %}
+    {% endfor %}
+</div>
+{% endblock %}
